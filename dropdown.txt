@@ -1,0 +1,14 @@
+<label for="TransactionType">Choose transaction type:</label>
+<select id="TransactionType">
+  <option value="Stock">Stock</option>
+  <option value="Balance">Balance</option>
+  <option value="All">All Types</option>
+</select>
+
+<label for="TransactionDates">Choose period:</label>
+<select id="TransactionType">
+  <option value="7Days">Last 7 Days</option>
+  <option value="30Days">Last 30 Days</option>
+  <option value="AllTime">All Transactions</option>
+
+</select>

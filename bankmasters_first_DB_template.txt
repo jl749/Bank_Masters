@@ -1,0 +1,61 @@
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Transaction;
+DROP TABLE IF EXISTS Company;
+
+CREATE TABLE `User` (
+UserID int NOT NULL AUTO_INCREMENT,
+Username varchar(20) NOT NULL,
+FirstName varchar(20) NOT NULL,
+LastName varchar(20) NOT NULL,
+DOB date NOT NULL,
+Password varchar(30) NOT NULL,
+PRIMARY KEY (UserID));
+
+CREATE TABLE `Transaction` (
+TransactionID int NOT NULL AUTO_INCREMENT,
+Amount int NOT NULL,
+TradedAt decimal (19,2) NOT NULL,
+ActivityTime timestamp NOT NULL,
+PRIMARY KEY (TransactionID),
+Username varchar(20) REFERENCES User(Username),
+CompanyName varchar(30) REFERENCES Company(CompanyName));
+
+CREATE TABLE `Company` (
+CompanyName varchar(30) NOT NULL,
+TickerID varchar (5) NOT NULL,
+PRIMARY KEY (CompanyName));
+
+INSERT INTO User
+
+(Username, FirstName, LastName, DOB, Password)
+
+VALUES
+
+("Bob", "Jung-Moo", "Lee", "01/01/2000", "kent2020"),
+("Igor007", "Igor", "King", "07/10/1998", "kent2021"),
+("MiloKent", "Emilio", "Edwards", "22/07/2010", "kent2022");
+
+INSERT INTO Transaction
+
+(Username,CompanyName, Amount, TradedAt, ActivityTime)
+
+VALUES
+
+("Igor007","Apple", "5", "100.75", "2020-01-01 09:00:00"),
+("MiloKent","Microsoft", "17", "90.5", "2020-03-01 19:25:14"),
+("Igor007", "Alphabet", "12", "145.10", "2019-12-27 16:12:29"),
+("Bob","LG", "150", "65.91", "2019-06-19"),
+("Bob","LG", "-25", "91.6", "2019-09-29"),
+("MiloKent", "Microsoft", "6", "72.3", "2019-05-29 12:01:56");
+
+
+INSERT INTO Company
+
+(CompanyName, TickerID)
+
+VALUES
+
+("Apple", "AAPL"),
+("Microsoft", "MSFT"),
+("Alphabet", "GOOG"),
+("LG", "LG");

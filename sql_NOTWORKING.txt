@@ -1,0 +1,84 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS Company;
+DROP TABLE IF EXISTS Transaction;
+DROP TABLE IF EXISTS User;
+SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE User (
+Email varchar(60) NOT NULL,
+Username varchar(20) NOT NULL,
+FirstName varchar(30) NOT NULL,
+Surname varchar(30) NOT NULL,
+Balance decimal (19,2) NOT NULL DEFAULT '0',
+Password varchar(50) NOT NULL,
+PRIMARY KEY (Username));
+
+CREATE TABLE Company (
+TickerID varchar (5) NOT NULL,
+CompanyName varchar(30) NOT NULL,
+PRIMARY KEY (TickerID));
+
+CREATE TABLE Transaction (
+TransactionID int NOT NULL AUTO_INCREMENT,
+Amount int NOT NULL,
+TradedAt decimal (19,2) NOT NULL,
+CurrencyRate decimal (19,2) NOT NULL,
+ActivityTime timestamp NOT NULL,
+Username varchar(20) NOT NULL,
+TickerID varchar(5) NOT NULL,
+PRIMARY KEY (TransactionID),
+CONSTRAINT fk_user_transaction FOREIGN KEY (Username) REFERENCES User(Username),
+CONSTRAINT fk_company_transaction FOREIGN KEY (TickerID) REFERENCES Company(TickerID));
+
+CREATE TABLE StockHistory
+
+TickerID varchar(5) NOT NULL,
+ValueDate DATETIME NOT NULL,
+Value decimal (19,2) NOT NULL,
+PRIMARY KEY (TickerID, ValueDate),
+CONSTRAINT pk_stock_history PRIMARY KEY (TickerID, ValueDate)),
+CONSTRAINT fk_stock_history FOREIGN KEY (TickerID) REFERENCES Company(TickerID));;
+
+INSERT INTO User
+
+(Email, Username, FirstName, Surname, Password)
+
+VALUES
+
+("bob@bob.com", "bob", "bob", "bobbington", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"),
+("igor007@mi5.com", "igor007", "igor", "igorson", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"),
+("milo@milo.com", "milo", "milo", "olim", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220");
+
+INSERT INTO Company
+
+(CompanyName, TickerID)
+
+VALUES
+
+("Apple", "AAPL"),
+("Microsoft", "MSFT"),
+("Cisco", "CSCO"),
+("IBM", "IBM"),
+("Activision Blizzard", "ATVI"),
+("Nvidia", "NVDA"),
+("Advanced Micro Devices", "AMD"),
+("Amazon", "AMZN"),
+("Netflix", "NFLX"),
+("Intel", "INTC"),
+("Alphabet", "GOOG");
+
+INSERT INTO Transaction
+
+(Username, CompanyName, Amount, CurrencyRate, TradedAt, ActivityTime)
+
+VALUES
+
+("igor007","Apple", "5", "100.75","2020-01-01 09:00:00"),
+("milo","Microsoft", "17", "90.5", "2020-03-01 19:25:14"),
+("igor007", "Alphabet", "12", "145.10", "2019-12-27 16:12:29"),
+("bob","IBM", "150", "65.91", "2019-06-19"),
+("bob","IBM", "-25", "91.6", "2019-09-29"),
+("milo", "Microsoft", "6", "72.3", "2019-05-29 12:01:56");
+
+
+

@@ -1,0 +1,222 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$this->load->helper('url');	//MIGHT NEED IT
+$this->load->library('session');
+$this->load->library('table');
+?><!DOCTYPE html>
+<style>
+
+h1,h2,h3{
+    text-align: center;
+    text-decoration: underline;
+}    
+    
+.left{
+    float: left;
+    width: 80vh;
+}
+.right{
+    float: right;
+    width: 80vh;
+}
+    
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    border: 1px solid black;
+}
+
+.container{
+    border: 1px solid black; 
+    height: 75vh;
+    width: 89%;
+    float: right;
+    }
+
+img.Banner {
+    width: 35%;
+}
+
+.buttonpanel{
+    border: 1px solid black;
+    width: 10%;
+    height: 75vh;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 500px;
+    height: 50px;
+    border: 1px solid black;
+    
+}
+th {
+    text-align: center;
+    height: auto;
+    border: 1px solid black;
+}
+td {
+    text-align: center;
+    height: auto;
+    border: 1px solid black;
+}
+
+button {
+    background-color: whitesmoke;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 8px;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 90%;
+}
+
+button:hover {
+    opacity: 0.8;
+}  
+
+.balance{
+    background-color: lightslategray;   
+}
+
+.s{
+    background-color: darkgray;
+}
+
+#historybutton
+{
+	margin: 0 auto;
+	display: block;
+}
+
+#ddowntype
+{
+	position: relative;
+	left: 40%;­­­­­
+}
+
+#ddowndate
+{
+	position: relative;
+	left: 50%;
+}
+    
+</style>
+<html>
+<div class="imgcontainer">
+<img src= "<?php echo base_url('images/Banner.png'); ?>"  alt="Banner" class="Banner">
+</div>
+<body>
+</div>
+<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script><!--ajax API-->
+</script>
+<title>Settings</title>
+<div class = "container">
+<h1>Settings</h1>
+<h3>Add Funds</h3>
+<?php echo form_open('Main/addFunds');
+echo form_input('amount', '1');
+echo form_submit('submit','Add Funds'); 
+
+echo form_close();
+echo $this->session->flashdata('error'); ?>
+<h3>Transaction History</h3>
+<?php
+$prefix = "null";
+
+echo form_open('Main/getHistory');
+
+
+$optionsT = array(
+	'Stock' =>'Stock',
+	'Balance' =>'Balance',
+	 );
+echo "<br>" .form_dropdown('TransactionType', $optionsT, 'All', 'id= "ddowntype"');
+
+$optionsD = array(
+	'7Days' => '7 Days',
+	'30Days'=> '30 Days',
+	'AllTime'=> 'All Transactions',
+);
+
+
+echo form_dropdown('TransactionDate', $optionsD, 'All', 'id= "ddowndate"');
+
+echo "<br> <br>";
+
+
+if ( isset( $_POST['history'] ) )
+ {
+	if($results != null && $_POST['TransactionType'] == 'Stock')
+	{
+	$this->table->set_heading('Transaction Type','Shares Traded', 'Price <br>per share', 'Date', 'Company');
+	
+	$prefix = "Stock";
+	}
+	elseif ($results != null && $_POST['TransactionType'] == 'Balance')
+	{
+	$this->table->set_heading('Transaction Type','Amount', 'New Balance', 'Date');
+	
+	$prefix = "Balance";
+	}
+	else
+	{
+	echo "No results found!";
+	}
+	$template = array(
+        'table_open'            => '<table border="0" cellpadding="4" cellspacing="0">',
+
+        'thead_open'            => '<thead>',
+        'thead_close'           => '</thead>',
+
+        'heading_row_start'     => '<tr>',
+        'heading_row_end'       => '</tr>',
+        'heading_cell_start'    => '<th>',
+        'heading_cell_end'      => '</th>',
+
+        'tbody_open'            => '<tbody>',
+        'tbody_close'           => '</tbody>',
+
+        'row_start'             => '<tr><td>' .$prefix. '</td>',
+        'row_end'               => '</tr>',
+        'cell_start'            => '<td>',
+        'cell_end'              => '</td>',
+
+        'row_alt_start'         => '<tr><td>' .$prefix. '</td>',
+        'row_alt_end'           => '</tr>',
+        'cell_alt_start'        => '<td>',
+        'cell_alt_end'          => '</td>',
+
+        'table_close'           => '</table>'
+);
+	$this->table->set_template($template);
+	echo $this->table->generate($results);
+ }
+
+echo "<br> <br>" .form_submit('history', 'Return Results', 'id= "historybutton"');
+echo form_close();
+?>
+<div id = "chart"></div>
+</div>   
+
+<div class = "buttonpanel"> 
+<button class = "balance" id="myBtn" >Balance: Â£0.00</button>
+<br>
+<button class = "dashboard" onclick="location.href='<?php echo base_url();?>index.php/main/dashboard'">Dash Board</button>
+<br>
+<button class = "lse" onclick="location.href='<?php echo base_url();?>index.php/main/lse'">LSE</button>
+<br>
+<button class = "ce" onclick="location.href='<?php echo base_url();?>index.php/main/currencyex'">Currency Exchange</button>
+<br>
+<button class = "lb" onclick="location.href='<?php echo base_url();?>index.php/main/leaderboard'">Leader Board</button>
+<br>
+<button class = "s" onclick="location.href='<?php echo base_url();?>index.php/main/settings'">Settings</button>
+<br>
+<button  onclick="location.href='<?php echo base_url();?>index.php/main/logout'">Log Out</button>    
+</div>
+
+</body>
+</html>

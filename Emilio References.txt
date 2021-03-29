@@ -1,0 +1,14 @@
+W3Schools. 2020. W3 CSS Modal. [ONLINE] Available at: https://www.w3schools.com/w3css/w3css_modal.asp. [Accessed 14 April 2020]. 
+Codeigniter. 2020. Form Validation -- Codeigniter. [ONLINE] Available at: https://codeigniter.com/userguide3/libraries/form_validation.html. [Accessed 14 April 2020]. 
+Codeigniter. 2020. Form Helper -- Codeigniter. [ONLINE] Available at: https://codeigniter.com/userguide3/helpers/form_helper.html. [Accessed 14 April 2020]. 
+Codeigniter. 2020. URL Helper -- Codeigniter. [ONLINE] Available at: https://codeigniter.com/userguide3/helpers/url_helper.html. [Accessed 14 April 2020]. 
+Codeigniter. 2020. Queries -- Codeigniter. [ONLINE] Available at: https://codeigniter.com/userguide3/database/queries.html. [Accessed 14 April 2020]. 
+Codeigniter. 2020. Generating Query Results -- Codeigniter. [ONLINE] Available at: https://codeigniter.com/userguide3/database/results.html. [Accessed 14 April 2020]. 
+Codeigniter. 2020. Query Builder Class -- Codeigniter. [ONLINE] Available at: https://codeigniter.com/userguide3/database/query_builder.html. [Accessed 14 April 2020]. 
+Codeigniter. 2020. Database Utility Class -- Codeigniter. [ONLINE] Available at: https://codeigniter.com/userguide3/database/utilities.html. [Accessed 14 April 2020]. 
+Codeigniter. 2020. Transactions -- Codeigniter. [ONLINE] Available at: https://codeigniter.com/userguide3/database/transactions.html. [Accessed 14 April 2020]. 
+Codeigniter. 2020. Session Library -- Codeigniter. [ONLINE] Available at: https://codeigniter.com/userguide3/libraries/sessions.html. [Accessed 14 April 2020]. 
+W3Schools. 2020. PHP fgetcsv() Function. [ONLINE] Available at: https://www.w3schools.com/php/func_filesystem_fgetcsv.asp. [Accessed 14 April 2020]. 
+W3Schools. 2020. PHP fopen() Function. [ONLINE] Available at: https://www.w3schools.com/php/func_filesystem_fopen.asp. [Accessed 14 April 2020]. 
+W3Schools. 2020. PHP fclose() Function. [ONLINE] Available at: https://www.w3schools.com/php/func_filesystem_fclose.asp. [Accessed 14 April 2020]. 
+W3Schools. 2020. SQL Constraints. [ONLINE] Available at: https://www.w3schools.com/sql/sql_constraints.asp. [Accessed 14 April 2020]. 
